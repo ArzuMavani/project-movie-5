@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-black to-gray-900 text-white">
+    <aside class="fixed top-0 left-0 h-full w-64 bg-gray-800 bg-opacity-90 p-6 shadow-xl"style="background-color:rgb(26,34,36)">
+        <div class="flex items-center space-x-4 mb-8">
+            <img src="../uploads/img/logo.svg" alt="Logo"
+                class="w-26 rounded-full border-0 border-amber-400">
+        </div>
+        <nav>
+            <ul class="space-y-4">
+                <li><a href="#" class="hover:text-amber-400 block">Home</a></li>
+                <li><a href="#" class="hover:text-amber-400 block">TV Shows</a></li>
+                <li><a href="/add_movie" class="hover:text-amber-400 block"style="padding-bottom:17px;">Add Movies</a></li>
+            </ul>
+        </nav>
+        <div class="mt-auto space-y-4">
+            <a href="#" class="hover:text-amber-400 block">Search</a>
+            <a href="#" class="hover:text-amber-400 block">Kids</a>
+        </div>
+    </aside>
+
+    <main class="ml-64"style="background-color:black">
+        <section class="p-8">
+            <caption ><h2 class="text-3xl font-bold mb-6 "style="text-align: center;">watch on amazon <span style="color:rgb(232, 49, 156);">miniTV</span></h2></caption>
+            <div class="gap-5"style="width:90%;display:flex;margin:auto">
+                <% moviesData.map((movie)=>{ %>
+                    <div class="relative overflow-hidden rounded-lg shadow-lg transform transition-transform hover:scale-105">
+                        <img src="<%= movie.image %>" alt="Movie" class="w-full h-auto">
+                        <div class="p-4 bg-gray-900 bg-opacity-75">
+                            <h1 class="text-lg font-bold"style="color:#C81F49">
+                                <%= movie.movie_name %>
+                                <br>
+                                <span class="text-sm font-medium text-white"><%= movie.movie_ratings %></span>
+                            </h1>
+                            <p class="truncate text-sm text-gray-300">
+                                <%= movie.movie_disc %>
+                            </p>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+                            <a href="/update_Movie?id=<%= movie._id %>"
+                                class="px-4 py-2  text-black me-2 font-semibold rounded"style="background-color:white">Edit</a>
+                            <a href="/deleteMovie?id=<%= movie._id %>"
+                                class="px-4 py-2  text-white font-semibold rounded"style="background-color:rgb(232, 49, 156)">Delete</a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
